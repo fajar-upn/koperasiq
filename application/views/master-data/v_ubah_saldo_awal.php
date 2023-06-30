@@ -95,14 +95,14 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col-12 col-md-2">
 		          			<h5>Debit</h5>
-		          			<input type="text" class="form-control" name="debit" id="debit" value="<?= $saldo_awal['debit'];set_value('debit'); ?>">
+		          			<input type="text" class="form-control" name="debit" id="debit" onkeypress="return hanyaAngka(event)" value="<?= $saldo_awal['debit'];set_value('debit'); ?>">
 		          			<small class="form-text text-danger"><?= form_error('debit'); ?></small>
 		       
 		          		</div>
 
 		          		<div class="form-group col-12 col-md-2">
 		          			<h5>Kredit</h5>
-		          			<input type="text" class="form-control" name="kredit" id="kredit" value="<?=$saldo_awal['kredit']; set_value('kredit'); ?>">
+		          			<input type="text" class="form-control" name="kredit" id="kredit" onkeypress="return hanyaAngka(event)" value="<?=$saldo_awal['kredit']; set_value('kredit'); ?>">
 		          			<small class="form-text text-danger"><?= form_error('kredit'); ?></small>
 		          			
 		          		</div>
@@ -189,4 +189,12 @@
 
 		});
 
+</script>
+<script>
+  function hanyaAngka(event) {
+    var angka = (event.which) ? event.which : event.keyCode
+    if (angka != 46 && angka > 31 && (angka < 48 || angka > 57))
+      return false;
+    return true;
+  }
 </script>
