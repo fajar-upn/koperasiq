@@ -6,11 +6,11 @@
 			<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
 		</div>
 		<div class="info-box">
-			<span class="info-box-icon bg-info" style="width: 300px"><i class="far fa-envelope"> </i> Kas Koperasi</span>
+			<span class="info-box-icon bg-info" style="width: 100%"><i class="far fa-envelope"></i><h4>Kas K</h4></span>
 
-			<div class="info-box-content">
+			<!-- <div class="info-box-content">
 				<span class="info-box-number">1,410</span>
-			</div>
+			</div> -->
 			<!-- /.info-box-content -->
 		</div>
 
