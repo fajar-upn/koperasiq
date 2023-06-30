@@ -18,16 +18,15 @@ class Anggota extends CI_Controller
 
 	public function index()
 	{
+		$id_anggota = $_SESSION['id_anggota'];
 		$data['user'] = $_SESSION['nama'];
-		$data['id_anggota'] = $_SESSION['id_anggota'];
-		$data['anggota_a'] = $this->M_backend->count_anggota_a();
-		$data['anggota_t'] = $this->M_backend->count_anggota_t();
-		$data['simpanan'] = $this->M_backend->count_simpanan();
-		$data['pinjaman'] = $this->M_backend->count_pinjaman();
+		$data['id_anggota'] = $id_anggota;
+		$data['simpanan'] = $this->M_backend->count_simpanan_anggota($id_anggota);
+		$data['pinjaman'] = $this->M_backend->count_pinjaman_anggota($id_anggota);
 
 		$this->load->view('tempanggota/header');
 		$this->load->view('tempanggota/sidebar', $data);
-		$this->load->view('koperasi/v_koperasi', $data);
+		$this->load->view('anggota/v_koperasi_anggota', $data);
 		$this->load->view('tempanggota/footer');
 	}
 
