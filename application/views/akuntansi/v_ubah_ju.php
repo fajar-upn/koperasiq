@@ -120,13 +120,13 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input  type="text" class="form-control" name="debit[]" id="debit" value="<?= $transaksi['debit'][0];set_value('debit'); ?>">
+		          			<input  type="text" class="form-control" name="debit[]" id="debit" onkeypress="return hanyaAngka(event)" value="<?= $transaksi['debit'][0];set_value('debit'); ?>">
 		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
-		          			<input  type="text" class="form-control" name="kredit[]" id="kredit" value="<?= $transaksi['kredit'][0]; ?>">
+		          			<input  type="text" class="form-control" name="kredit[]" id="kredit" onkeypress="return hanyaAngka(event)" value="<?= $transaksi['kredit'][0]; ?>">
 		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 		          		</div>
 		          		
@@ -223,13 +223,13 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input  type="text" class="form-control" name="debit[]" id="debit1" value="<?= $transaksi['debit'][1];set_value('debit'); ?>">
+		          			<input  type="text" class="form-control" name="debit[]" id="debit1" onkeypress="return hanyaAngka(event)" value="<?= $transaksi['debit'][1];set_value('debit'); ?>">
 		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
-		          			<input  type="text" class="form-control" name="kredit[]" id="kredit1" value="<?= $transaksi['kredit'][1]; ?>">
+		          			<input  type="text" class="form-control" name="kredit[]" id="kredit1" onkeypress="return hanyaAngka(event)" value="<?= $transaksi['kredit'][1]; ?>">
 		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 		          		</div>
 		          		
@@ -349,13 +349,13 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input  type="text" class="form-control" name="debit[]" id="debit2" value="<?= $transaksi['debit'][2];set_value('debit'); ?>">
+		          			<input  type="text" class="form-control" name="debit[]" id="debit2" onkeypress="return hanyaAngka(event)" value="<?= $transaksi['debit'][2];set_value('debit'); ?>">
 		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
-		          			<input  type="text" class="form-control" name="kredit[]" id="kredit2" value="<?= $transaksi['kredit'][2]; ?>">
+		          			<input  type="text" class="form-control" name="kredit[]" id="kredit2" onkeypress="return hanyaAngka(event)" value="<?= $transaksi['kredit'][2]; ?>">
 		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 		          		</div>
 		          		
@@ -477,13 +477,13 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input   type="text" class="form-control" name="debit[]" id="debit3" value="<?=  $transaksi['debit'][3];set_value('debit'); ?>">
+		          			<input   type="text" class="form-control" name="debit[]" id="debit3" onkeypress="return hanyaAngka(event)" value="<?=  $transaksi['debit'][3];set_value('debit'); ?>">
 		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
-		          			<input  type="text" class="form-control" name="kredit[]" id="kredit3" value="<?= $transaksi['kredit'][3]; ?>">
+		          			<input  type="text" class="form-control" name="kredit[]" id="kredit3" onkeypress="return hanyaAngka(event)" value="<?= $transaksi['kredit'][3]; ?>">
 		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 		          		</div>
 		          		
@@ -784,4 +784,12 @@
 
 	
 
+</script>
+<script>
+  function hanyaAngka(event) {
+    var angka = (event.which) ? event.which : event.keyCode
+    if (angka != 46 && angka > 31 && (angka < 48 || angka > 57))
+      return false;
+    return true;
+  }
 </script>

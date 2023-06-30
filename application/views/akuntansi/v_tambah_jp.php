@@ -175,13 +175,13 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input  type="text" class="form-control" name="debit[]" id="debit" value="">
+		          			<input  type="text" class="form-control" name="debit[]" id="debit" onkeypress="return hanyaAngka(event)" value="">
 		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
-		          			<input  type="text" class="form-control" name="kredit[]" id="kredit" value="">
+		          			<input  type="text" class="form-control" name="kredit[]" id="kredit" onkeypress="return hanyaAngka(event)" value="">
 		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 		          		</div>
 		          		
@@ -261,13 +261,13 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input  type="text" class="form-control" name="debit[]" id="debit1" value="">
+		          			<input  type="text" class="form-control" name="debit[]" id="debit1" onkeypress="return hanyaAngka(event)" value="">
 		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
-		          			<input  type="text" class="form-control" name="kredit[]" id="kredit1" value="">
+		          			<input  type="text" class="form-control" name="kredit[]" id="kredit1" onkeypress="return hanyaAngka(event)" value="">
 		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 		          		</div>
 		          		
@@ -350,13 +350,13 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input disabled type="text" class="form-control" name="debit[]" id="debit2" value="">
+		          			<input disabled type="text" class="form-control" name="debit[]" id="debit2" onkeypress="return hanyaAngka(event)" value="">
 		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
-		          			<input disabled type="text" class="form-control" name="kredit[]" id="kredit2" value="">
+		          			<input disabled type="text" class="form-control" name="kredit[]" id="kredit2" onkeypress="return hanyaAngka(event)" value="">
 		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 		          		</div>
 		          		
@@ -436,13 +436,13 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input disabled  type="text" class="form-control" name="debit[]" id="debit3" value="">
+		          			<input disabled  type="text" class="form-control" name="debit[]" id="debit3" onkeypress="return hanyaAngka(event)" value="">
 		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
-		          			<input disabled type="text" class="form-control" name="kredit[]" id="kredit3" value="">
+		          			<input disabled type="text" class="form-control" name="kredit[]" id="kredit3" onkeypress="return hanyaAngka(event)" value="">
 		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 		          		</div>
 		          		
@@ -773,4 +773,12 @@
                 return false;
            });
 	});
+</script>
+<script>
+  function hanyaAngka(event) {
+    var angka = (event.which) ? event.which : event.keyCode
+    if (angka != 46 && angka > 31 && (angka < 48 || angka > 57))
+      return false;
+    return true;
+  }
 </script>

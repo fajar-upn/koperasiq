@@ -156,13 +156,13 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input  type="text" class="form-control" name="debit[]" id="debit" value="<?= $data_jp['debit'][0];set_value('debit'); ?>">
+		          			<input  type="text" class="form-control" name="debit[]" id="debit" onkeypress="return hanyaAngka(event)" value="<?= $data_jp['debit'][0];set_value('debit'); ?>">
 		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
-		          			<input  type="text" class="form-control" name="kredit[]" id="kredit" value="<?= $data_jp['kredit'][0]; ?>">
+		          			<input  type="text" class="form-control" name="kredit[]" id="kredit" onkeypress="return hanyaAngka(event)" value="<?= $data_jp['kredit'][0]; ?>">
 		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 		          		</div>
 		          		
@@ -259,13 +259,13 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input  type="text" class="form-control" name="debit[]" id="debit1" value="<?= $data_jp['debit'][1];set_value('debit'); ?>">
+		          			<input  type="text" class="form-control" name="debit[]" id="debit1" onkeypress="return hanyaAngka(event)" value="<?= $data_jp['debit'][1];set_value('debit'); ?>">
 		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
-		          			<input  type="text" class="form-control" name="kredit[]" id="kredit1" value="<?= $data_jp['kredit'][1]; ?>">
+		          			<input  type="text" class="form-control" name="kredit[]" id="kredit1" onkeypress="return hanyaAngka(event)" value="<?= $data_jp['kredit'][1]; ?>">
 		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 		          		</div>
 		          		
@@ -385,13 +385,13 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input  type="text" class="form-control" name="debit[]" id="debit2" value="<?= $data_jp['debit'][2];set_value('debit'); ?>">
+		          			<input  type="text" class="form-control" name="debit[]" id="debit2" onkeypress="return hanyaAngka(event)" value="<?= $data_jp['debit'][2];set_value('debit'); ?>">
 		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
-		          			<input  type="text" class="form-control" name="kredit[]" id="kredit2" value="<?= $data_jp['kredit'][2]; ?>">
+		          			<input  type="text" class="form-control" name="kredit[]" id="kredit2" onkeypress="return hanyaAngka(event)" value="<?= $data_jp['kredit'][2]; ?>">
 		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 		          		</div>
 		          		
@@ -513,13 +513,13 @@
 		          	<div class="form-row justify-content-around mt-2">
 		          		<div class="form-group col">
 		          			<h5>Debit</h5>
-		          			<input   type="text" class="form-control" name="debit[]" id="debit3" value="<?=  $data_jp['debit'][3];set_value('debit'); ?>">
+		          			<input   type="text" class="form-control" name="debit[]" id="debit3" onkeypress="return hanyaAngka(event)" value="<?=  $data_jp['debit'][3];set_value('debit'); ?>">
 		          			<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 		          		</div>
 
 		          		<div class="form-group col">
 		          			<h5>Kredit</h5>
-		          			<input  type="text" class="form-control" name="kredit[]" id="kredit3" value="<?= $data_jp['kredit'][3]; ?>">
+		          			<input  type="text" class="form-control" name="kredit[]" id="kredit3" onkeypress="return hanyaAngka(event)" value="<?= $data_jp['kredit'][3]; ?>">
 		          			<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 		          		</div>
 		          		
@@ -821,4 +821,12 @@
 
 	
 
+</script>
+<script>
+  function hanyaAngka(event) {
+    var angka = (event.which) ? event.which : event.keyCode
+    if (angka != 46 && angka > 31 && (angka < 48 || angka > 57))
+      return false;
+    return true;
+  }
 </script>

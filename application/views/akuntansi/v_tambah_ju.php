@@ -141,7 +141,7 @@
 												<h5>Pos Saldo</h5>
 												<select class="form-control" name="pos_saldo[]" id="pos_saldo" onchange="nonaktifDebitKredit()">
 													<option selected>Pilih...</option>
-													<option value="Debit">Debit</option>
+													<option value="Debit" >Debit</option>
 													<option value="Kredit">Kredit</option>
 												</select>
 											</div>
@@ -150,13 +150,13 @@
 										<div class="form-row justify-content-around mt-2">
 											<div class="form-group col">
 												<h5>Debit</h5>
-												<input  type="text" class="form-control" name="debit[]" id="debit" value="<?= set_value('debit[]'); ?>">
+												<input  type="text" class="form-control" name="debit[]" id="debit" onkeypress="return hanyaAngka(event)" value="<?= set_value('debit[]'); ?>">
 												<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 											</div>
 
 											<div class="form-group col">
 												<h5>Kredit</h5>
-												<input  type="text" class="form-control" name="kredit[]" id="kredit" value="">
+												<input  type="text" class="form-control" name="kredit[]" onkeypress="return hanyaAngka(event)" id="kredit" value="">
 												<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 											</div>
 											
@@ -241,13 +241,13 @@
 										<div class="form-row justify-content-around mt-2">
 											<div class="form-group col">
 												<h5>Debit</h5>
-												<input  type="text" class="form-control" name="debit[]" id="debit1" value="<?= set_value('debit'); ?>">
+												<input  type="text" class="form-control" name="debit[]" id="debit1" onkeypress="return hanyaAngka(event)" value="<?= set_value('debit'); ?>">
 												<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 											</div>
 
 											<div class="form-group col">
 												<h5>Kredit</h5>
-												<input  type="text" class="form-control" name="kredit[]" id="kredit1" value="">
+												<input  type="text" class="form-control" name="kredit[]" onkeypress="return hanyaAngka(event)" id="kredit1" value="">
 												<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 											</div>
 											
@@ -333,13 +333,13 @@
 										<div class="form-row justify-content-around mt-2">
 											<div class="form-group col">
 												<h5>Debit</h5>
-												<input disabled type="text" class="form-control" name="debit[]" id="debit2" value="<?= set_value('debit'); ?>">
+												<input disabled type="text" class="form-control" name="debit[]" id="debit2" onkeypress="return hanyaAngka(event)" value="<?= set_value('debit'); ?>">
 												<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 											</div>
 
 											<div class="form-group col">
 												<h5>Kredit</h5>
-												<input disabled type="text" class="form-control" name="kredit[]" id="kredit2" value="">
+												<input disabled type="text" class="form-control" name="kredit[]" id="kredit2" onkeypress="return hanyaAngka(event)" value="">
 												<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 											</div>
 											
@@ -425,13 +425,13 @@
 										<div class="form-row justify-content-around mt-2">
 											<div class="form-group col">
 												<h5>Debit</h5>
-												<input disabled  type="text" class="form-control" name="debit[]" id="debit3" value="<?= set_value('debit'); ?>">
+												<input disabled  type="text" class="form-control" name="debit[]" id="debit3" onkeypress="return hanyaAngka(event)" value="<?= set_value('debit'); ?>">
 												<small class="form-text text-danger"><?= form_error('debit[]'); ?></small>
 											</div>
 
 											<div class="form-group col">
 												<h5>Kredit</h5>
-												<input disabled type="text" class="form-control" name="kredit[]" id="kredit3" value="">
+												<input disabled type="text" class="form-control" name="kredit[]" id="kredit3" onkeypress="return hanyaAngka(event)" value="">
 												<small class="form-text text-danger"><?= form_error('kredit[]'); ?></small>
 											</div>
 											
@@ -757,4 +757,12 @@
                 return false;
            });
 	});
+</script>
+<script>
+  function hanyaAngka(event) {
+    var angka = (event.which) ? event.which : event.keyCode
+    if (angka != 46 && angka > 31 && (angka < 48 || angka > 57))
+      return false;
+    return true;
+  }
 </script>
