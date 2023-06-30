@@ -78,7 +78,6 @@
                           <th width="">Saldo</th>
                           <th width="">Jenis Simpanan</th>
                           <th width="">Tanggal</th>
-                          <th width="10%">Aksi</th>
                         </tr>
                       </thead>
                       <tbody>
