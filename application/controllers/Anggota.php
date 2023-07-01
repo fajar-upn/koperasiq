@@ -22,7 +22,17 @@ class Anggota extends CI_Controller
 		$data['user'] = $_SESSION['nama'];
 		$data['id_anggota'] = $id_anggota;
 		$data['simpanan'] = $this->M_backend->count_simpanan_anggota($id_anggota);
-		$data['pinjaman'] = $this->M_backend->count_pinjaman_anggota($id_anggota);
+		$pinjaman = $this->M_backend->count_pinjaman_anggota($id_anggota);
+
+		if ($pinjaman==NULL) {
+			$data['pinjaman'] = 0;
+		}
+		else{
+			$id_pinjaman = $pinjaman['id_pinjaman'];
+			$nominal = $pinjaman['pinjaman'];
+			$angsuran = $this->M_backend->count_angsuran_anggota($id_pinjaman);
+			$data['pinjaman'] = $nominal - $angsuran['angsuran'];
+		}
 
 		$this->load->view('tempanggota/header');
 		$this->load->view('tempanggota/sidebar', $data);

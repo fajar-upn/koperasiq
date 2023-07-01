@@ -62,7 +62,12 @@ class M_backend extends CI_Model
 
 	public function count_pinjaman_anggota($id_anggota)
 	{
-		return $this->db->query("SELECT SUM(nominal) AS pinjaman FROM pinjaman WHERE id_anggota='$id_anggota'")->row_array();
+		return $this->db->query("SELECT id_pinjaman, nominal AS pinjaman FROM pinjaman WHERE id_anggota='$id_anggota' AND status_pinjam='Belum Lunas'")->row_array();
+	}
+
+	public function count_angsuran_anggota($id_pinjaman)
+	{
+		return $this->db->query("SELECT SUM(nominal) AS angsuran FROM angsuran WHERE id_pinjaman='$id_pinjaman'")->row_array();
 	}
 
 	public function tampil_anggota()

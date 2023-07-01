@@ -52,7 +52,7 @@
 				<div class="card card-primary" style="border-radius: 15px 15px 10px 10px">
 					<div class="card-header" style="border-radius: 15px 15px 0px 0px; background-color: #032d53">
 						<div class="row justify-content-center">
-							<h3 class="card-title mb-0">Total Pinjaman</h3>
+							<h3 class="card-title mb-0">Total Pinjaman Berjalan</h3>
 						</div>
 					</div>
 					<div class="card-body" style="border-radius: 15px 15px 10px 10px">
@@ -61,7 +61,7 @@
 								<i class="fas fa-upload fa-2x"></i>
 							</div>
 							<div class="col-auto align-self-center">
-								<h3 class="card-title mb-0"><b><?= rupiah2($pinjaman['pinjaman']) ?></b></h3>
+								<h3 class="card-title mb-0"><b><?= rupiah2($pinjaman) ?></b></h3>
 							</div>
 						</div>
 					</div>
