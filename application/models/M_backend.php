@@ -140,17 +140,17 @@ class M_backend extends CI_Model
 		$this->db->insert('saldo_awal', $data);
 	}
 
-	public function tambahanggota($image)
+	public function tambahanggota($id_anggota, $nama, $alamat, $email, $password, $foto)
 	{
 		$data = [
-			"id_anggota" => $this->input->post('id_anggota', true),
-			"nama" => $this->input->post('nama', true),
-			"alamat" => $this->input->post('alamat', true),
-			"foto" => $image,
-			"email" => $this->input->post("email", true),
-			"password" => md5($this->input->post("password", true)),
-			"role" => $this->input->post("role", true),
-			"status" => $this->input->post('status', true)
+			"id_anggota" => $id_anggota,
+			"nama" => $nama,
+			"alamat" => $alamat,
+			"foto" => $foto,
+			"email" => $email,
+			"password" => md5($this->input->post($password, true)),
+			"role" => "Anggota",
+			"status" => "Aktif"
 		];
 
 		$this->db->insert('anggota', $data);

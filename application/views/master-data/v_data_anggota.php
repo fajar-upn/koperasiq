@@ -8,8 +8,7 @@
         </div>
       </div>
       <div class="row">
-
-        <?php if ($this->session->flashdata('pesan_sukses')) : ?>
+        <?php if ($this->session->flashdata('pesan_sukses')) { ?>
           <div class="col-6">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
               Data Anggota<strong> Berhasil </strong> <?= $this->session->flashdata('pesan_sukses'); ?>
@@ -18,8 +17,7 @@
               </button>
             </div>
           </div>
-        <?php endif; ?>
-        <?php if ($this->session->flashdata('pesan_gagal')) : ?>
+        <?php } else if ($this->session->flashdata('pesan_gagal')) { ?>
           <div class="col-6">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
               Data Anggota<strong> Gagal: </strong> <?= $this->session->flashdata('pesan_gagal'); ?>
@@ -28,7 +26,7 @@
               </button>
             </div>
           </div>
-        <?php endif; ?>
+        <?php } ?>
       </div>
     </div><!-- /.container-fluid -->
   </section>

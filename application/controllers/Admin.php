@@ -189,11 +189,22 @@ class Admin extends CI_Controller
 
 	public function tambah_anggota()
 	{
-
 		$data['user'] = $_SESSION['nama'];
 		$data['judul'] = 'Tambah Anggota';
 		$data['active'] = 'active';
 		$data['id_anggota'] = $this->M_backend->id_anggota();
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('master-data/v_tambah_anggota', $data);
+		$this->load->view('templates/footer');
+	}
+
+	public function proses_tambah_anggota()
+	{
+
+		$data['active'] = 'active';
+		$id_anggota = $this->M_backend->id_anggota();
 
 		// form validation
 		$this->form_validation->set_rules('id_anggota', 'ID Anggota', 'required');
@@ -202,40 +213,47 @@ class Admin extends CI_Controller
 		$this->form_validation->set_rules('email', 'Email', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
-		$this->form_validation->set_rules('role', 'Role', 'required');
-		$this->form_validation->set_rules('status', 'Status', 'required');
-
-		// image validation
-		$config['upload_path']          = './foto/';
-		$configs                        = pathinfo($_FILES['foto']['name']);
-		$fileName                       = $configs . "." . $configs['extension'];
-		echo $fileName;
-		// $config['file_name']            = 'foto-' . $fileName;
-		// $config['allowed_types']        = 'jpg|JPG|png|PNG|jpeg|JPEG';
-		// $config['max_size']             = 8000;
-		// $config['max_width']            = 1080;
-		// $config['max_height']           = 1080;
-		$this->load->library('upload', $config);
 
 		if ($this->form_validation->run() ==  FALSE) {
-			$this->load->view('templates/header');
-			$this->load->view('templates/sidebar', $data);
-			$this->load->view('master-data/v_tambah_anggota', $data);
-			$this->load->view('templates/footer');
+			$this->session->set_flashdata('pesan_gagal', 'Error');
+			redirect('admin/tambah_anggota');
 		} else {
+			$generate_rand = rand(0, 1000);
+			$config['upload_path']          = './foto/';
+			$configs                        = pathinfo($_FILES['foto']['name']);
+			$delete_point                   = str_replace(' ', '', $configs['filename']);
+			$delete_point1                  = str_replace('.', '_', $delete_point);
+			$config['file_name']            = $generate_rand . "_" . $delete_point1 . "." . $configs['extension'];
+			$config['allowed_types']        = 'jpg|jpeg|png';
+			$config['max_size']             = 1000;
 
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
 
-			die;
+			$nama = $this->input->post('nama');
+			$alamat = $this->input->post('alamat');
+			$email = $this->input->post('email');
+			$password = $this->input->post('password');
 
 			/**
 			 * Note terdapat bug apabila 'required' pada input image dihilangkan melalui inspect element
 			 */
 			if ($this->upload->do_upload('foto') == False) {
+				if ($_FILES['foto']['max_size'] > 1000) {
+					$this->session->set_flashdata('pesan_gagal', 'File Foto Melebihi Kapasitas');
+					redirect('admin/tambah_anggota');
+				}
+
+				if ($configs['extension'] != 'jpg' || $configs['extension'] != 'jpeg' || $configs['extension'] != 'png') {
+					$this->session->set_flashdata('pesan_gagal', 'Ekstensi Dokumen Foto Tidak Sesuai');
+					redirect('admin/tambah_anggota');
+				}
+
 				$this->session->set_flashdata('pesan_gagal', 'foto gagal ditambahkan');
-				redirect('admin/data_anggota');
+				redirect('admin/tambah_anggota');
 			} else {
 				$this->session->set_flashdata('pesan_sukses', 'Ditambahkan');
-				// $this->M_backend->tambahanggota($image);
+				$this->M_backend->tambahanggota($id_anggota, $nama, $alamat, $email, $password, $config['file_name']);
 				redirect('admin/data_anggota');
 			}
 		}
