@@ -215,7 +215,7 @@ class Admin extends CI_Controller
 		$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
 
 		if ($this->form_validation->run() ==  FALSE) {
-			$this->session->set_flashdata('pesan_gagal', 'Error');
+			$this->session->set_flashdata('pesan_gagal', 'Seluruh data anggota harus diisi');
 			redirect('admin/tambah_anggota');
 		} else {
 			$generate_rand = rand(0, 1000);
