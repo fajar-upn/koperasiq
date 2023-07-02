@@ -26,6 +26,15 @@
               </button>
             </div>
           </div>
+        <?php } else if ($this->session->flashdata('pesan_warning')) { ?>
+          <div class="col-6">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              Data Anggota<strong> Perhatian: </strong> <?= $this->session->flashdata('pesan_warning'); ?>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
         <?php } ?>
       </div>
     </div><!-- /.container-fluid -->

@@ -207,18 +207,34 @@ class M_backend extends CI_Model
 	}
 
 	// public function ubahanggota($image)
-	public function ubahanggota()
+	public function ubahanggota($id_anggota, $nama, $alamat, $foto, $email, $role, $status)
 	{
 		$data = [
-			"id_anggota" => $this->input->post('id_anggota', true),
-			"nama" => $this->input->post('nama', true),
-			"alamat" => $this->input->post('alamat', true),
-			"email" => $this->input->post('email', true),
-			"role" => $this->input->post('role', true),
-			"status" => $this->input->post('status', true)
+			"id_anggota" => $id_anggota,
+			"nama" => $nama,
+			"alamat" => $alamat,
+			"foto" => $foto,
+			"email" => $email,
+			"role" => $role,
+			"status" => $status
 		];
 
-		$this->db->where('id_anggota', $this->input->post('id_anggota'));
+		$this->db->where('id_anggota', $id_anggota);
+		$this->db->update('anggota', $data);
+	}
+
+	public function ubahanggotatanpafoto($id_anggota, $nama, $alamat, $email, $role, $status)
+	{
+		$data = [
+			"id_anggota" => $id_anggota,
+			"nama" => $nama,
+			"alamat" => $alamat,
+			"email" => $email,
+			"role" => $role,
+			"status" => $status
+		];
+
+		$this->db->where('id_anggota', $id_anggota);
 		$this->db->update('anggota', $data);
 	}
 

@@ -239,7 +239,7 @@ class Admin extends CI_Controller
 			 * Note terdapat bug apabila 'required' pada input image dihilangkan melalui inspect element
 			 */
 			if ($this->upload->do_upload('foto') == False) {
-				if ($_FILES['foto']['max_size'] > 1000) {
+				if ($_FILES['foto']['size'] > 1000) {
 					$this->session->set_flashdata('pesan_gagal', 'File Foto Melebihi Kapasitas');
 					redirect('admin/tambah_anggota');
 				}
@@ -278,34 +278,141 @@ class Admin extends CI_Controller
 	{
 		$data['user'] = $_SESSION['nama'];
 		$data['judul'] = 'Ubah Data Anggota';
-		$data['active'] = 'active';
 		$data['anggota'] = $this->M_backend->get_id_anggota($id_anggota);
 
-		$this->form_validation->set_rules('id_anggota', 'ID Anggota', 'required');
-		$this->form_validation->set_rules('nama', 'Nama', 'required');
-		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
-		$this->form_validation->set_rules('email', 'Email', 'required');
-		$this->form_validation->set_rules('role', 'Role', 'required');
-		$this->form_validation->set_rules('status', 'Status', 'required');
+		$id = $data['anggota']['id_anggota'];
 
-		// image validation
-		$config['upload_path']          = './foto/';
-		$config['file_name']			= 'foto-' . $data['anggota']['foto'];
-		$config['allowed_types']        = 'jpg|JPG|png|PNG|jpeg|JPEG';
-		$config['overwrite']			= true;
-		$config['max_size']             = 8000;
-		$config['max_width']            = 1080;
-		$config['max_height']           = 1080;
-		$this->load->library('upload', $config);
+		$nama = $this->input->post('nama', "Nama", true);
+		$alamat = $this->input->post('alamat', "Alamat", true);
+		$foto = $this->input->post('foto', "Foto", true);
+		$email = $this->input->post('email', "Email", true);
+		$role = $this->input->post('role', "Role", true);
+		$status = $this->input->post('status', "Status", true);
 
-		if ($this->form_validation->run() ==  FALSE) {
-			$this->load->view('templates/header');
-			$this->load->view('templates/sidebar', $data);
-			$this->load->view('master-data/v_ubah_anggota', $data);
-			$this->load->view('templates/footer');
-		} else {
-			$this->M_backend->ubahanggota();
+		if (!$data['anggota']) {
+			$this->session->set_flashdata('pesan_gagal', 'Data anggota tidak ditemukan');
 			redirect('admin/data_anggota');
+		}
+
+		if ($nama == NULL && $alamat == NULL && $email == NULL && $role == NULL && $status == NULL) {
+			if ($_FILES['foto']['name'] == NULL) {
+				$this->session->set_flashdata('pesan_peringatan', 'Tidak Memperbarui Data Anggota Apapun 1');
+				redirect('admin/data_anggota');
+			} else {
+				$randomNumber = rand(0, 1000);
+
+				$config['upload_path']          = './foto/';
+				$configs                        = pathinfo($_FILES['foto']['name']);
+				$delete_point                   = str_replace(' ', '', $configs['filename']);
+				$delete_point1                  = str_replace('.', '_', $delete_point);
+				$fileName                       = $delete_point1 . "." . $configs['extension'];
+				$config['file_name']            = $randomNumber . "_" . $fileName;
+				$config['allowed_types']        = 'jpg|jpeg|png';
+				$config['max_size']             = 1000;
+
+				$this->load->library('upload', $config);
+
+				$this->load->helper("file");
+				$path = "./foto/" . $data['anggota']["foto"];
+				$path1 = $config['file_name'];
+
+				if ($this->upload->do_upload('foto') == TRUE) {
+					unlink($path);
+					$this->session->set_flashdata('pesan_sukses', 'Berhasil Memperbarui Data Anggota');
+					$this->M_backend->ubahanggota($id, $nama, $alamat, $path1, $email, $role, $status);
+					redirect('admin/data_anggota');
+				} else {
+					if ($configs['extension'] == 'png' || $configs['extension'] == 'jpg' || $configs['extension'] == 'jpeg') {
+						if ($_FILES['foto']['size'] > 1000) {
+							$this->session->set_flashdata('pesan_gagal', 'Foto Melebihi Kapasitas');
+							redirect('admin/ubahanggota/' . $id);
+						}
+
+						$this->session->set_flashdata('pesan_gagal', 'Foto Gagal Di Upload');
+						redirect('admin/ubahanggota/' . $id);
+					} else {
+						$this->session->set_flashdata('pesan_gagal', 'Format Foto Tidak Sesuai 1');
+						redirect('admin/ubahanggota/' . $id);
+					}
+				}
+			}
+		} else {
+			if ($_FILES['foto']['name'] == NULL) {
+
+				if ($data['anggota']['nama'] == $nama && $data['anggota']['alamat'] == $alamat && $data['anggota']['email'] == $email && $data['anggota']['foto'] == $foto && $data['anggota']['role'] == $role && $data['anggota']['status'] == $status) {
+					$this->session->set_flashdata('pesan_warning', 'Tidak Memperbarui Data Anggota Apapun 2');
+					redirect('admin/data_anggota');
+				}
+
+				$this->session->set_flashdata('pesan_berhasil', 'Berhasil Memperbarui Data Anggota');
+				$this->M_backend->ubahanggotatanpafoto($id, $nama, $alamat, $email, $role, $status);
+				redirect('admin/data_anggota');
+			} else {
+				$randomNumber = rand(0, 1000);
+
+				$config['upload_path']          = './foto/';
+				$configs                        = pathinfo($_FILES['foto']['name']);
+				$delete_point                   = str_replace(' ', '', $configs['filename']);
+				$delete_point1                  = str_replace('.', '_', $delete_point);
+				$fileName                       = $delete_point1 . "." . $configs['extension'];
+				$config['file_name']            = $randomNumber . "_" . $fileName;
+				$config['allowed_types']        = 'jpg|jpeg|png';
+				$config['max_size']             = 1000;
+				$this->load->library('upload', $config);
+
+				$this->load->helper("file");
+				$path = "./foto/" . $data['anggota']["foto"];
+
+				$path1 = $config['file_name'];
+
+				if ($this->upload->do_upload('foto') == TRUE) {
+					unlink($path);
+					$this->session->set_flashdata('pesan_berhasil', 'Berhasil Memperbarui Data Anggota');
+					$this->M_backend->ubahanggota($id, $nama, $alamat, $path1, $email, $role, $status);
+					redirect('admin/data_anggota');
+				} else {
+
+					if ($configs['extension'] == 'jpg' || $configs['extension'] == 'jpeg' || $configs['extension'] == 'png') {
+						if ($_FILES['foto']['size'] > 1000) {
+							$this->session->set_flashdata('pesan_gagal', 'Foto Melebihi Kapasitas');
+							redirect('admin/ubahanggota/' . $id);
+						}
+
+						$this->session->set_flashdata('pesan_gagal', 'Gagal Upload Foto');
+						redirect('admin/ubahanggota/' . $id);
+					} else {
+						$this->session->set_flashdata('pesan_gagal', 'Format Foto Tidak Sesuai 2');
+						redirect('admin/ubahanggota/' . $id);
+					}
+				}
+			}
+
+
+			// $this->form_validation->set_rules('id_anggota', 'ID Anggota', 'required');
+			// $this->form_validation->set_rules('nama', 'Nama', 'required');
+			// $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+			// $this->form_validation->set_rules('email', 'Email', 'required');
+			// $this->form_validation->set_rules('role', 'Role', 'required');
+			// $this->form_validation->set_rules('status', 'Status', 'required');
+
+			// // image validation
+			// $config['upload_path']          = './foto/';
+			// $config['file_name']			= 'foto-' . $data['anggota']['foto'];
+			// $config['allowed_types']        = 'jpg|JPG|png|PNG|jpeg|JPEG';
+			// $config['overwrite']			= true;
+			// $config['max_size']             = 8000;
+			// $config['max_width']            = 1080;
+			// $config['max_height']           = 1080;
+			// $this->load->library('upload', $config);
+
+			// if ($this->form_validation->run() ==  FALSE) {
+			// 	$this->load->view('templates/header');
+			// 	$this->load->view('templates/sidebar', $data);
+			// 	$this->load->view('master-data/v_ubah_anggota', $data);
+			// 	$this->load->view('templates/footer');
+			// } else {
+			// 	$this->M_backend->ubahanggota();
+			// 	redirect('admin/data_anggota');
 			// $uploaded_data = $this->upload->data();
 			// $image = $uploaded_data['file_name'];
 
@@ -319,6 +426,7 @@ class Admin extends CI_Controller
 			// 	$this->session->set_flashdata('pesan_sukses', 'Diubah');
 			// 	$this->M_backend->ubahanggota($image);
 			// 	redirect('admin/data_anggota');
+			// }
 			// }
 		}
 	}
