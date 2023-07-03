@@ -13,7 +13,7 @@
                 <div class="col">
                     <div class="row mt-2">
                         <div class="col-1">
-                            <a role="button" href="<?= base_url('anggota'); ?>" class="btn btn-primary">Kembali</a>
+                            <a role="button" href="<?= base_url('admin/tampil_angsuran'); ?>" class="btn btn-primary">Kembali</a>
                         </div>
                     </div>
                 </div>
