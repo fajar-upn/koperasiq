@@ -1031,6 +1031,22 @@ class Admin extends CI_Controller
 		$this->load->view('templates/footer');
 	}
 
+	public function detail_angsuran_anggota($id_anggota)
+	{
+		$data['user'] = $_SESSION['nama'];
+		$data['angsuran'] = $this->M_laporan->lihat_angsuran_anggota($id_anggota);
+		$data['anggota'] = $this->M_backend->cari_anggota_berdasarkan_id($id_anggota);
+		if ($data['angsuran'] == "") {
+			$this->session->set_flashdata('pesan_gagal', 'Anggota Koperasi Tidak Ditemukan');
+			redirect("admin/tampil_angsuran");
+		}
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('laporan/v_laporan_detail_angsuran', $data);
+		$this->load->view('templates/footer');
+	}
+
 	public function lihat_angsuran_all()
 	{
 

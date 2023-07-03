@@ -75,6 +75,11 @@ class M_backend extends CI_Model
 		return $this->db->get('anggota')->result_array();
 	}
 
+	public function cari_anggota_berdasarkan_id($id_anggota)
+	{
+		return $this->db->query("SELECT * FROM anggota WHERE id_anggota='$id_anggota'")->row_array();
+	}
+
 	public function cari_anggota()
 	{
 		$katakunci = $this->input->post('katakunci', true);
