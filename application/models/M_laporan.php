@@ -77,6 +77,11 @@ class M_laporan extends CI_Model {
 	    return $this->db->get()->result_array();
 	}
 
+	public function lihat_anggota_byid($id_anggota)
+	{
+		return $this->db->query("SELECT * FROM anggota WHERE id_anggota='$id_anggota' AND status='Aktif'")->row_array();
+	}
+
 	public function lihat_simpanan()
 	{
 		$this->db->select('*');
@@ -133,6 +138,11 @@ class M_laporan extends CI_Model {
 	    $this->db->where("DATE_FORMAT(tanggal,'%Y')", $this->input->post('tahun'));
 	    $this->db->order_by('id_anggota', 'ASC');
 	    return $this->db->get()->result_array();
+	}
+
+	public function lihat_angsuran_anggota($id_anggota)
+	{
+		return $this->db->query("SELECT angsuran.bukti_transaksi_an AS bukti_transaksi,pinjaman.tanggal_pinjam,pinjaman.nominal AS nominal_pinjaman,angsuran.tanggal AS tanggal_angsuran, angsuran.periode_angsuran, angsuran.nominal AS nominal_angsuran, angsuran.jasa, angsuran.keterangan FROM angsuran JOIN pinjaman ON angsuran.id_pinjaman=pinjaman.id_pinjaman AND angsuran.id_anggota='$id_anggota' ORDER BY angsuran.tanggal ASC")->result_array();
 	}
 
 	public function pos_ekuitas()

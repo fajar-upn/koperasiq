@@ -14,14 +14,7 @@
         <div class="col">
           <div class="row mt-2">
             <div class="col-1">
-              <a role="button" href="<?= base_url('anggota/tampil_simpanan'); ?>" class="btn btn-primary">Kembali</a>
-            </div>
-            <div class="col-2">
-              <form style="margin-bottom: 0;" method="post" action="<?= base_url('admin/cetak_pinjaman_a'); ?>" target="_blank">
-                <input type="text" class="form-control" name="tahun" value="<?= $tahun ?>" hidden required>
-                <input type="text" class="form-control" name="id_anggota" value="<?= $id ?>" hidden required>
-                <button type="submit" class="btn btn-secondary"><i class="fa fa-file-pdf"></i> Cetak</button>
-              </form>
+              <a role="button" href="<?= base_url('anggota/tampil_pinjaman'); ?>" class="btn btn-primary">Kembali</a>
             </div>
           </div>
         </div>

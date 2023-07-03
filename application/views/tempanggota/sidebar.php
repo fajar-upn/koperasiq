@@ -69,18 +69,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('anggota/tampil_simpanan')?>"><i class="fa fa-angle-right nav-icon"></i><p>Riwayat Transaksi</p></a>
-              </li>
-              
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="#tampil_simpanan_anggota"><i class="fa fa-angle-right nav-icon"></i><p>Daftar Simpanan</p></a>
+                <a class="nav-link" href="<?php echo base_url('anggota/tampil_simpanan')?>"><i class="fa fa-angle-right nav-icon"></i><p>Daftar Simpanan</p></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#tampil_pinjaman_anggota"><i class="fa fa-angle-right nav-icon"></i><p>Daftar Pinjaman</p></a>
+                <a class="nav-link" href="<?php echo base_url('anggota/tampil_pinjaman')?>"><i class="fa fa-angle-right nav-icon"></i><p>Daftar Pinjaman</p></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#tampil_angsuran_anggota"><i class="fa fa-angle-right nav-icon"></i><p>Daftar Angsuran</p></a>
-              </li> -->
+                <a class="nav-link" href="<?php echo base_url('anggota/lihat_angsuran_anggota')?>"><i class="fa fa-angle-right nav-icon"></i><p>Daftar Angsuran</p></a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">

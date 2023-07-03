@@ -34,7 +34,7 @@
 
   <div id="sformulir1" class="container mb-2">
     <div class="row">
-      <div class="col-lg-6 mt-3">
+      <div class="col-lg-12 mt-3">
         <div class="card p-2 shadow-sm">
           <h4 class="text-center">Lihat Simpanan </h4>
           <hr>
@@ -51,50 +51,8 @@
           </form>
         </div>
       </div>
-      <div class="col-lg-6 mt-3">
-        <div class="card p-2 shadow-sm">
-          <h4 class="text-center">Lihat Angsuran</h4>
-          <hr>
-          <form action="<?= base_url('anggota/lihat_angsuran_anggota') ?>" method="post">
-            <div class="form-row">
-              <div class="form-group col-lg-12">
-                <h6>Masukkan Tahun Angsuran</h6>
-                <input type="text" class="form-control" name="tahun" onkeypress="return hanyaAngka(event)" required>
-              </div>
-            </div>
-            <div class="text-center">
-              <button type="submit" name="tambah" class="btn btn-success" style="width: 200px;">Input</button>
-            </div>
-          </form>
-        </div>
-      </div>
     </div>
   </div>
-
-  <div id="sformulir2" class="container mb-2">
-    <div class="row">
-      <div class="col-lg-6">
-
-        <div class="card p-2 shadow-sm">
-          <h4 class="text-center">Lihat Pinjaman</h4>
-          <hr>
-          <form action="<?= base_url('anggota/lihat_pinjaman_anggota') ?>" method="post">
-            <div class="form-row">
-              <div class="form-group col-lg-12">
-                <h6>Masukkan Tahun Pinjaman</h6>
-                <input type="text" class="form-control" name="tahun" onkeypress="return hanyaAngka(event)" required>
-              </div>
-            </div>
-            <div class="text-center">
-              <button type="submit" name="tambah" class="btn btn-success" style="width: 200px;">Input</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
 </div>
 <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
 <script>
