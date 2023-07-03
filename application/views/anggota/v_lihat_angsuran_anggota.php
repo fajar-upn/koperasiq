@@ -3,7 +3,7 @@
     <div class="card p-2">
       <div class="row mb-2">
         <div class="col text-center">
-          <h2 class="text-dark"><strong>Daftar Pinjaman</strong></h2>
+          <h2 class="text-dark"><strong>Daftar Angsuran</strong></h2>
           <h4 class="text-dark"><b><?= $user ?></b></h4>
         </div>
       </div>
