@@ -43,11 +43,11 @@ function rupiah($angka){
 	if ($angka < 0) {
 		$result = preg_replace("/[^0-9]/", "", $angka);
 		$rupiah = number_format($result,2,',','.');
-		$hasil = "<div style='height: 100%;text-align: right;'>(Rp ".$rupiah.")</div>";
+		$hasil = "<div style='height: 100%;text-align: right;'>(Rp. ".$rupiah.")</div>";
 	} 
 	else {
 		$rupiah = number_format($angka,2,',','.');
-		$hasil = "<div style='height: 100%;text-align:right;'>Rp ".$rupiah."</div>";
+		$hasil = "<div style='height: 100%;text-align:right;'>Rp. ".$rupiah."</div>";
 	}
 	return $hasil;
 }
@@ -57,11 +57,11 @@ function rupiah2($angka){
 	if ($angka < 0) {
 		$result = preg_replace("/[^0-9]/", "", $angka);
 		$rupiah = number_format($result,2,',','.');
-		$hasil = 'Rp '.$rupiah;
+		$hasil = 'Rp. '.$rupiah;
 	} 
 	else {
 		$rupiah = number_format($angka,2,',','.');
-		$hasil = 'Rp '.$rupiah;
+		$hasil = 'Rp. '.$rupiah;
 	}
 	return $hasil;
 }
