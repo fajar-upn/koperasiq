@@ -35,6 +35,7 @@
   $(function () {
     $("#example1").DataTable({
       "lengthChange": true, "autoWidth": false,"responsive": true,
+       "order": [[3, 'desc']],
       "buttons": ["copy", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
